@@ -36,12 +36,16 @@ namespace :simple_cms do
   desc 'Installs simple_cms dependencies(attachment_fu, responds_to_parent, acts_as_versioned, and coderay)'
   task :install_dependencies do
     puts "Installing plugin attachment_fu..."
-    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/attachment_fu/`
+    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/attachment_fu`
+    puts "\n\n\n\n"
     puts "Installing plugin responds_to_parent..."
-    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/responds_to_parent/`
+    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/responds_to_parent`
+    puts "\n\n\n\n"
     puts "Installing plugin acts_as_versioned..."
-    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned_2.1.1/`
+    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned_2.1.1`
+    FileUtils.mv PLUGIN_ROOT + '../acts_as_versioned_2.1.1', PLUGIN_ROOT + '../acts_as_versioned'
+    puts "\n\n\n\n"
     puts "Installing plugin coderay..."
-    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/coderay/`
+    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/coderay`
   end
 end
