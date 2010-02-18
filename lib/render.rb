@@ -28,9 +28,10 @@ module SimpleCmsMod
                           to_yaml.gsub(/\r/,"").gsub(/\.html/,"")
           end
           logger.error "CMS PARAMS: #{@cms_params}"
-          @cms_admin  = options[:admin]  || false
-          @cms_user   = options[:user]   || "N/A"
-          @prefix     = options[:prefix] || "" 
+          @cms_admin  = options[:admin]     || false
+          @cms_user   = options[:user]      || "N/A"
+          @prefix     = options[:prefix]    || "" 
+          @return_to  = options[:return_to] || nil
 
           session[:cms_data]                      ||= {}
           session[:cms_data][@cms_params]         ||= {}
@@ -42,6 +43,7 @@ module SimpleCmsMod
           request_path = request.env["REQUEST_URI"] if request_path.blank?
           request_path = request.env["SCRIPT_NAME"] if request_path.blank?
           session[:cms_data][@cms_params][:referer] = request_path.nil? ? "/" : request_path.gsub(/\/sites.*skizmo.com/,"")
+          session[:cms_data][@cms_params][:referer] = @return_to if @return_to
           logger.error "request_path: " + request_path.to_s
           logger.error("\nsession data: " + session[:cms_data].inspect + "\n\n")
           logger.error("session size: " + session[:cms_data].size.to_s + "\n\n")
